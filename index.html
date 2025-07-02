@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Ultra Calculator</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Ultra Calculator</h1>
+        <label for="ultra">Select Ultra:</label>
+        <select id="ultra">
+            <!-- All your options -->
+        <option value="2">Blue Ring</option>
+        <option value="3">Red Ring</option>
+        <option value="114">Firebreath Ring</option>
+        <option value="68">Gobattle Ring</option>
+        <option value="155">Restoration Ring</option>
+        <option value="166">Bloodmoon Ring</option>
+        <option value="6">Hermes Boots</option>
+        <option value="25">Speed Boots</option>
+        <option value="26">Maximum Speed Boots</option>
+        <option value="4">Normal Invisibility Cloak</option>
+        <option value="5">Extreme Invisibility Cloak</option>
+        <option value="20">Instant Defense Cloak</option>
+        <option value="21">Epic Instant Defense Cloak</option>
+        <option value="30">Health Regeneration Cloak</option>
+        <option value="31">Maximum Health Regeneration Cloak</option>
+        <option value="35">Normal Venom Protection Cloak</option>
+        <option value="36">Extraordinary Venom Protection Cloak</option>
+        <option value="32">Fire Protection Cloak</option>
+        <option value="33">Maximum Fire Protection Cloak</option>
+        <option value="45">Anti Freezing Glove</option>
+        <option value="14">Instant Strength Glove</option>
+        <option value="15">Epic Strength Glove</option>
+        <option value="39">Epic Invincibility Potion</option>
+        <option value="115">Firebreath's Blood</option>
+        <option value="51">Gravity Feather</option>
+        <option value="154">Team Gravity Feather</option>
+        <option value="74">Breath Helmet</option>
+        <option value="48">Lava Armor Protector</option>
+        <option value="116">Fire Enchantment</option>
+        <option value="168">Peppermint Strike</option>
+        <option value="186">Greed's Grip Lv. 1</option>
+        <option value="187">Dwarf's Strength Lv. 1</option>
+        <option value="198">Flying Skill Lv. 1</option>
+        <option value="182">Dice of Destiny Lv. 1</option>
+        <option value="183">Iron Heart Lv. 1</option>
+        <option value="184">Rejuvenation Gem Lv. 1</option>
+        <option value="189">Dodge Charm Lv. 1</option>
+        <option value="190">Wizard's Focus Lv. 1</option>
+        <option value="191">Gem Dust Lv. 1</option>
+        <option value="188">Shinobi's Fury Lv. 1</option>
+        <option value="161">Talisman of the Phoenix Lv. 1</option>
+
+
+        </select>
+        <label for="luck">Luck:</label>
+        <input type="number" id="luck" min="0" max="20"/>
+        <label for="clover">Clovers:</label>
+        <input type="number" id="clover" min="0" max="6"/>
+        <label for="dragons">Lucky Dragons:</label>
+        <input type="number" id="dragons" min="0" max="6"/>
+        <label for="lemonade">Lemonade:</label>
+        <input type="number" id="lemonade" min="0" max="1"/>
+        <button id="calculate">Calculate Probability</button>
+        <div id="results"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+

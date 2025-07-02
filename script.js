@@ -1,0 +1,95 @@
+const ultraSelect = document.getElementById("ultra");
+const luckInput = document.getElementById("luck");
+const cloverInput = document.getElementById("clover");
+const dragonsInput = document.getElementById("dragons");
+const lemonadeInput = document.getElementById("lemonade");
+const calculateButton = document.getElementById("calculate");
+const resultsDiv = document.getElementById("results");
+
+calculateButton.addEventListener("click", () => {
+    const ultraId = ultraSelect.value;
+    const luck = parseInt(luckInput.value) || 0;
+    const clover = parseInt(cloverInput.value) || 0;
+    const dragons = parseInt(dragonsInput.value) || 0;
+    const lemonade = parseInt(lemonadeInput.value) || 0;
+
+    const probability = calculateUltraProbability(ultraId, luck, clover, dragons, lemonade);
+    const fraction = (percentage) => (1 / (percentage / 100)).toFixed(0);
+
+    resultsDiv.textContent = `You have a ${probability.toFixed(3)}% chance of dropping this ultra, or a 1 in ${fraction(probability)} chance.`;
+});
+
+const items = {
+    "Blue Ring": { "tickets": 500, "dungeon": -1, "id": 2 },
+    "Red Ring": { "tickets": 500, "dungeon": -1, "id": 3 },
+    "Firebreath Ring": { "tickets": 250, "dungeon": 15, "id": 114 },
+    "Gobattle Ring": { "tickets": 250, "dungeon": 31, "id": 68 },
+    "Restoration Ring": { "tickets": 500, "dungeon": 41, "id": 155 },
+    "Bloodmoon Ring": { "tickets": 1000, "dungeon": 46, "id": 166 },
+    "Hermes Boots": { "tickets": 4000, "dungeon": -1, "id": 6 },
+    "Speed Boots": { "tickets": 3000, "dungeon": 20, "id": 25 },
+    "Maximum Speed Boots": { "tickets": 3000, "dungeon": 17, "id": 26 },
+    "Normal Invisibility Cloak": { "tickets": 3000, "dungeon": -1, "id": 4 },
+    "Extreme Invisibility Cloak": { "tickets": 3000, "dungeon": -1, "id": 5 },
+    "Instant Defense Cloak": { "tickets": 3000, "dungeon": 18, "id": 20 },
+    "Epic Instant Defense Cloak": { "tickets": 3000, "dungeon": 10, "id": 21 },
+    "Health Regeneration Cloak": { "tickets": 3000, "dungeon": 13, "id": 30 },
+    "Maximum Health Regeneration Cloak": { "tickets": 3000, "dungeon": 16, "id": 31 },
+    "Normal Venom Protection Cloak": { "tickets": 3000, "dungeon": 10, "id": 35 },
+    "Extraordinary Venom Protection Cloak": { "tickets": 3000, "dungeon": 12, "id": 36 },
+    "Fire Protection Cloak": { "tickets": 3000, "dungeon": 17, "id": 32 },
+    "Maximum Fire Protection Cloak": { "tickets": 2000, "dungeon": 14, "id": 33 },
+    "Anti Freezing Glove": { "tickets": 3000, "dungeon": 14, "id": 45 },
+    "Instant Strength Glove": { "tickets": 3000, "dungeon": 27, "id": 14 },
+    "Epic Strength Glove": { "tickets": 2000, "dungeon": 16, "id": 15 },
+    "Epic Invincibility Potion": { "tickets": 5000, "dungeon": -1, "id": 39 },
+    "Firebreath's Blood": { "tickets": 2000, "dungeon": 15, "id": 115 },
+    "Gravity Feather": { "tickets": 1000, "dungeon": 12, "id": 51 },
+    "Team Gravity Feather": { "tickets": 500, "dungeon": 52, "id": 154 },
+    "Breath Helmet": { "tickets": 3000, "dungeon": 28, "id": 74 },
+    "Lava Armor Protector": { "tickets": 2000, "dungeon": 18, "id": 48 },
+    "Fire Enchantment": { "tickets": 1000, "dungeon": -1, "id": 116 },
+    "Peppermint Strike": { "tickets": 1000, "dungeon": 57, "id": 168 },
+    "Greed's Grip Lv. 1": { "tickets": 100, "dungeon": -1, "id": 186 },
+    "Dwarf's Strength Lv. 1": { "tickets": 100, "dungeon": 13, "id": 187 },
+    "Flying Skill Lv. 1": { "tickets": 10, "dungeon": -1, "id": 198 },
+    "Dice of Destiny Lv. 1": { "tickets": 500, "dungeon": -1, "id": 182 },
+    "Iron Heart Lv. 1": { "tickets": 500, "dungeon": -1, "id": 183 },
+    "Rejuvenation Gem Lv. 1": { "tickets": 500, "dungeon": -1, "id": 184 },
+    "Dodge Charm Lv. 1": { "tickets": 100, "dungeon": 16, "id": 189 },
+    "Wizard's Focus Lv. 1": { "tickets": 100, "dungeon": 27, "id": 190 },
+    "Gem Dust Lv. 1": { "tickets": 50, "dungeon": 31, "id": 191 },
+    "Shinobi's Fury Lv. 1": { "tickets": 100, "dungeon": 35, "id": 188 },
+    "Talisman of the Phoenix Lv. 1": { "tickets": 200, "dungeon": 15, "id": 161 }
+};
+
+function calculateUltraProbability(id, luck, clovers, dragons, lemonade) {
+    if (id === 0) return 0;
+
+    // Apply multipliers
+    luck *= (1.5 ** clovers) * (1.4 ** dragons) * (1.5 ** lemonade);
+    luck = Math.min(luck, 25);
+
+    const luckcalc = 0.0005 * luck + 0.006;
+
+    let item = null;
+    for (var name in items) {
+        if (items[name].id == id) {
+            item = items[name];
+            break;
+        }
+    }
+
+    // Calculate total tickets in the same dungeon or universal
+    let totalTickets = 0;
+    for (var name in items) {
+        const candidate = items[name];
+        if (candidate.dungeon === item.dungeon || candidate.dungeon === -1) {
+            totalTickets += candidate.tickets;
+        }
+    }
+
+    const probability = luckcalc * (100 * item.tickets / totalTickets);
+    console.log("luckcalc: " + luckcalc + " ");
+    return probability;
+}

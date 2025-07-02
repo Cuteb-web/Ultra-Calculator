@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+body {
+    background-color: #1A1A1A; /* Dark background */
+    color: #FFFFFF; /* White text */
+    font-family: 'Press Start 2P', cursive; /* Pixelated font */
+    font-size: 12px; /* Smaller font size for better pixelated effect */
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    image-rendering: pixelated; /* Makes images pixelated */
+    image-rendering: crisp-edges;
+}
+.container {
+    display: inline-block;
+    background-color: #333333;
+    padding: 20px;
+    border: 3px solid #FFD700; /* Gold border */
+    border-radius: 10px;
+    margin-top: 50px;
+    max-width: 300px;
+    width: 100%;
+}
+h1 {
+    font-size: 16px; /* Reduced font size for better readability */
+    color: #FFD700; /* Gold color */
+    text-shadow: 1px 1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000; /* Pixelated shadow effect */
+    margin: 0 0 20px 0;
+}
+label, select, input[type="number"], button {
+    display: block;
+    margin: 10px auto;
+}
+select, input[type="number"], button {
+    width: 90%; /* Adjust width to fit better */
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #555555;
+    color: #FFD700;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px; /* Increased font size */
+    text-align: center;
+    box-shadow: 0px 0px 5px #000000;
+}
+button {
+    background-color: #FFD700;
+    color: #000000;
+    cursor: pointer;
+    margin-top: 15px;
+}
+button:hover {
+    background-color: #FFAA00;
+}
+#results {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #444444;
+    border-radius: 5px;
+}
