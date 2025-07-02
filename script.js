@@ -71,7 +71,7 @@ function calculateUltraProbability(id, luck, clovers, dragons, lemonade) {
     luck *= (1.5 ** clovers) * (1.4 ** dragons) * (1.5 ** lemonade);
     luck = Math.min(luck, 25);
 
-    const luckcalc = 0.0005 * luck + 0.006;
+    const luckcalc = 0.05 * luck + 0.6;
 
     let item = null;
     for (var name in items) {
