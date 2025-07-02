@@ -60,7 +60,8 @@ const items = {
     "Wizard's Focus Lv. 1": { "tickets": 100, "dungeon": 27, "id": 190 },
     "Gem Dust Lv. 1": { "tickets": 50, "dungeon": 31, "id": 191 },
     "Shinobi's Fury Lv. 1": { "tickets": 100, "dungeon": 35, "id": 188 },
-    "Talisman of the Phoenix Lv. 1": { "tickets": 200, "dungeon": 15, "id": 161 }
+    "Talisman of the Phoenix Lv. 1": { "tickets": 200, "dungeon": 15, "id": 161 },
+    "BlazeTorch": { "tickets": 500, "dungeon": 53, "id": 263 }
 };
 
 function calculateUltraProbability(id, luck, clovers, dragons, lemonade) {
