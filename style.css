@@ -20,6 +20,7 @@ body {
     max-width: 300px;
     width: 100%;
 }
+
 h1 {
     font-size: 16px; /* Reduced font size for better readability */
     color: #FFD700; /* Gold color */
@@ -30,6 +31,12 @@ label, select, input[type="number"], button {
     display: block;
     margin: 10px auto;
 }
+
+select {
+    height: 40px;
+    font-size: 10px;
+}
+
 select, input[type="number"], button {
     width: 90%; /* Adjust width to fit better */
     padding: 10px;
@@ -52,8 +59,12 @@ button:hover {
     background-color: #FFAA00;
 }
 #results {
+    display: flex;
+    flex-direction: column;
     margin-top: 20px;
     padding: 10px;
     background-color: #444444;
     border-radius: 5px;
+    word-spacing: 2px;
+    line-height: 1.4;
 }

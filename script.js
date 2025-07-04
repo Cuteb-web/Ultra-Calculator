@@ -7,17 +7,12 @@ const calculateButton = document.getElementById("calculate");
 const resultsDiv = document.getElementById("results");
 
 calculateButton.addEventListener("click", () => {
-    const ultraId = ultraSelect.value;
-    const luck = parseInt(luckInput.value) || 0;
-    const clover = parseInt(cloverInput.value) || 0;
-    const dragons = parseInt(dragonsInput.value) || 0;
-    const lemonade = parseInt(lemonadeInput.value) || 0;
-
-    const probability = calculateUltraProbability(ultraId, luck, clover, dragons, lemonade);
-    const fraction = (percentage) => (1 / (percentage / 100)).toFixed(0);
-
-    resultsDiv.textContent = `You have a ${probability.toFixed(3)}% chance of dropping this ultra, or a 1 in ${fraction(probability)} chance.`;
+   runCalculations();
 });
+
+document.addEventListener("keydown", function(e) {
+    if (e.key === 'Enter') runCalculations();
+ });
 
 const items = {
     "Blue Ring": { "tickets": 500, "dungeon": -1, "id": 2 },
@@ -61,7 +56,7 @@ const items = {
     "Gem Dust Lv. 1": { "tickets": 50, "dungeon": 31, "id": 191 },
     "Shinobi's Fury Lv. 1": { "tickets": 100, "dungeon": 35, "id": 188 },
     "Talisman of the Phoenix Lv. 1": { "tickets": 200, "dungeon": 15, "id": 161 },
-    "BlazeTorch": { "tickets": 500, "dungeon": 53, "id": 263 }
+    "BlazeTorch": { "tickets": 500, "dungeon": 53, "id": 263 },
 };
 
 function calculateUltraProbability(id, luck, clovers, dragons, lemonade) {
@@ -93,4 +88,17 @@ function calculateUltraProbability(id, luck, clovers, dragons, lemonade) {
     const probability = luckcalc * (100 * item.tickets / totalTickets);
     console.log("luckcalc: " + luckcalc + " ");
     return probability;
+}
+
+function runCalculations(){
+    const ultraId = ultraSelect.value;
+    const luck = parseInt(luckInput.value) || 0;
+    const clover = parseInt(cloverInput.value) || 0;
+    const dragons = parseInt(dragonsInput.value) || 0;
+    const lemonade = parseInt(lemonadeInput.value) || 0;
+
+    const probability = calculateUltraProbability(ultraId, luck, clover, dragons, lemonade);
+    const fraction = (percentage) => (1 / (percentage / 100)).toFixed(0);
+
+    resultsDiv.textContent = `You have a ${probability.toFixed(4)}% chance of dropping this ultra, or a 1 in ${fraction(probability)} chance.`;
 }
