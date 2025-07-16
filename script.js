@@ -6,6 +6,9 @@ const lemonadeInput = document.getElementById("lemonade");
 const calculateButton = document.getElementById("calculate");
 const resultsDiv = document.getElementById("results");
 
+resultsDiv.textContent =
+	"Raw chance: 0.000%\n\n Chance from chest: 0.000%\n\n OR a 1 in 0 chance.";
+
 calculateButton.addEventListener("click", () => {
 	runCalculations();
 });
@@ -15,7 +18,7 @@ document.addEventListener("keydown", function (e) {
 });
 
 const items = {
-	"Generic Ultra": { tickets: 100000000, dungeon: -4, id: -1 },
+	"Generic Ultra": { tickets: 1, dungeon: -4, id: -1 },
 	"Blue Ring": { tickets: 500, dungeon: -1, id: 2 },
 	"Red Ring": { tickets: 500, dungeon: -1, id: 3 },
 	"Normal Invisibility Cloak": { tickets: 3000, dungeon: -1, id: 4 },
@@ -59,7 +62,7 @@ const items = {
 	"Gem Dust Lv. 1": { tickets: 50, dungeon: 31, id: 191 },
 	"Flying Skill Lv. 1": { tickets: 10, dungeon: -1, id: 198 },
 	"Rose Ring": { tickets: 250, dungeon: -2, id: 262 }, // DUNGEON ID TBD
-	"BlazeTorch": { tickets: 500, dungeon: -3, id: 263 }, // DUNGEON ID TBD
+	BlazeTorch: { tickets: 500, dungeon: -3, id: 263 }, // DUNGEON ID TBD
 };
 
 function calculateUltraProbability(id, luck, clovers, dragons, lemonade) {
@@ -80,17 +83,19 @@ function calculateUltraProbability(id, luck, clovers, dragons, lemonade) {
 	}
 
 	// Calculate total tickets in the same dungeon or universal
-	let totalTickets = 0;
-	for (var name in items) {
-		const candidate = items[name];
-		if (candidate.dungeon === item.dungeon || candidate.dungeon === -1) {
-			totalTickets += candidate.tickets;
+	let totalTickets = item.id == -1 ? 1 : 0;
+	if (item.id != -1)
+		for (var name in items) {
+			const candidate = items[name];
+			if (candidate.dungeon === item.dungeon || candidate.dungeon === -1) {
+				totalTickets += candidate.tickets;
+			}
 		}
-	}
 
 	const probability = luckcalc * ((100 * item.tickets) / totalTickets);
+	console.log("item: " + (100 * item.tickets) / totalTickets + " ");
 	console.log("luckcalc: " + luckcalc + " ");
-	return probability;
+	return [probability, luckcalc];
 }
 
 function runCalculations() {
@@ -109,7 +114,9 @@ function runCalculations() {
 	);
 	const fraction = (percentage) => (1 / (percentage / 100)).toFixed(0);
 
-	resultsDiv.textContent = `You have a ${probability.toFixed(
-		4
-	)}% chance of dropping this ultra, or a 1 in ${fraction(probability)} chance.`;
+	resultsDiv.textContent = `Raw chance: ${(100 * probability[1]).toPrecision(
+		3
+	)}%\n\n Chance from chest: ${probability[0].toPrecision(3)}%\n or a 1 in ${fraction(
+		probability[0]
+	)} chance.`;
 }

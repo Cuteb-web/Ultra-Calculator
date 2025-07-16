@@ -72,5 +72,5 @@ button:hover {
 	background-color: #444444;
 	border-radius: 5px;
 	word-spacing: 2px;
-	line-height: 1.4;
+	line-height: 1.6; /* Increased line height for better readability */
 }
