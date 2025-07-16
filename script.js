@@ -39,7 +39,7 @@ const items = {
 	"Gravity Feather": { tickets: 1000, dungeon: 12, id: 51 },
 	"Gobattle Ring": { tickets: 250, dungeon: 31, id: 68 },
 	"Breath Helmet": { tickets: 3000, dungeon: 28, id: 74 },
-	"Fire Enchantment": { tickets: 1000, dungeon: -1, id: 116 },
+	"Fire Enchantment": { tickets: 100, dungeon: -1, id: 116 },
 	"Firebreath Ring": { tickets: 250, dungeon: 15, id: 114 },
 	"Firebreath's Blood": { tickets: 2000, dungeon: 15, id: 115 },
 	"Team Gravity Feather": { tickets: 500, dungeon: 52, id: 154 },
