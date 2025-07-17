@@ -114,7 +114,7 @@ function runCalculations() {
 	);
 	const fraction = (percentage) => (1 / (percentage / 100)).toFixed(0);
 
-	resultsDiv.textContent = `Raw chance: ${(100 * probability[1]).toPrecision(
+	resultsDiv.textContent = `Raw chance: ${(100 * probability[0]/probability[1]).toPrecision(
 		3
 	)}%\n\n Chance from chest: ${probability[0].toPrecision(3)}%\n or a 1 in ${fraction(
 		probability[0]
